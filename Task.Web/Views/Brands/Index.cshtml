@@ -1,0 +1,68 @@
+﻿@model IEnumerable<BrandViewModel>
+@{
+    ViewData["Title"] = "Brands";
+}
+
+<div class="bg-white">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-md-12 text-end">
+                <a asp-controller="Brands" asp-action="AddBrand" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add Brand
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title text-center">
+                    <span>WE ARE Tecjo</span>
+                    We Are Tec jO. We Build Trust!
+                </div>
+
+                <div class="brands-inner">
+                    @if (!Model.Any())
+                    {
+                        <div class="alert alert-dismissible bg-light-warning border border-warning border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10">
+                            <!-- Icon -->
+                            <span class="svg-icon svg-icon-2hx svg-icon-warning me-4 mb-5 mb-sm-0">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor" />
+                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="currentColor" />
+                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor" />
+                                </svg>
+                            </span>
+                           
+                            <div class="d-flex flex-column pe-0 pe-sm-10 align-self-center">
+                                <h5 class="mb-1">No Brands Found!</h5>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                       
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
+                            @foreach (var brand in Model)
+                            {
+                                <div class="col">
+                                    <div class="single-brand wow fadeInUp" data-wow-delay=".2s">
+                                        <div class="figure text-center">
+                                            <img class="brand-profile-image" src="~/Images/Brands/@brand.ProfileImageUrl" alt="@brand.Name">
+                                            <div class="product-brand mt-3">@brand.Name</div>
+                                        </div>
+                                        <div class="brand-content text-center mt-3">
+                                            <h6>Country: @brand.Country</h6>
+                                            <p><strong>Field:</strong> @brand.Field</p>
+                                        </div>
+                                        <div class="brand-action text-center mt-3">
+                                            <a asp-controller="Brands" asp-action="BrandDetails" asp-route-id="@brand.Id" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> View Brand's Products</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

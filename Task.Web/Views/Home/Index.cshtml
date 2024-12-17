@@ -1,0 +1,306 @@
+﻿@model HomePageViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Slider Section -->
+<div class="slider-div">
+    <div id="carousel-example-generic" class="carousel-fade carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @foreach (var brand in Model.Brands)
+            {
+                <li data-target="#carousel-example-generic" data-slide-to="@Model.Brands.IndexOf(brand)" class="@(Model.Brands.IndexOf(brand) == 0 ? "active" : "")"></li>
+            }
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+            @foreach (var brand in Model.Brands)
+            {
+                <div class="item header1 @(Model.Brands.IndexOf(brand) == 0 ? "active" : "")">
+                    <div class="blur-item header1" style="background:url('/Images/Brands/@brand.BackgroundImageUrl') no-repeat center bottom; background-size: cover;"></div>
+                    <div class="carousel-caption">
+                        <div class="title1"><img alt="" src="/Images/Brands/@brand.ProfileImageUrl" class="img-responsive"></div>
+                        <div class="title2">
+                            @brand.Field : @brand.Name <br />
+                              @brand.Country 
+                        </div>
+                        <div><a asp-controller="Brands" asp-action="BrandDetails" asp-route-id="@brand.Id" class="btn-header btn-default">Explore Brand</a></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Products Section -->
+<div class="bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title text-center">
+                    <span>WE ARE Tecjo</span>
+                    We Are Tec jO. We Build Trust!
+                </div>
+
+                <div class="products-inner">
+                    <ul>
+                        @foreach (var product in Model.Products)
+                        {
+                            <li class="single-product wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+                                <div class="figure">
+                                    <div class="product-brand">@product.Brand.Name</div>
+
+                                    <div class="product-price">
+                                        <span class="new-price">JD @product.CurrentPrice</span>
+                                        @if (product.CurrentPrice != product.OrignalPrice)
+                                        {
+                                            <span class="old-price">JD @product.OrignalPrice</span>
+                                        }
+                                    </div>
+
+                                    <img class="Sirv image-main sirv-image-loaded"
+                                         src="~/Images/Products/@product.ImageUrl"
+                                         data-src="~/Images/Products/@product.ImageUrl"
+                                         referrerpolicy="no-referrer-when-downgrade"
+                                         id="responsive-image-@product.Id" style="">
+
+                                    <img class="Sirv image-hover sirv-image-loaded"
+                                         data-src="~/Images/Products/@product.ImageUrl"
+                                         referrerpolicy="no-referrer-when-downgrade"
+                                         id="responsive-image-hover-@product.Id"
+                                         src="~/Images/Products/@product.ImageUrl">
+                                </div>
+
+                                <div class="product-action">
+                                    <a href="@Url.Action("AddToCart", "Cart", new { id = product.Id })" title="Add to cart" class=""><i class="fas fa-shopping-cart"></i></a>
+                                    <a href="@Url.Action("AddToWishlist", "Wishlist", new { id = product.Id })" title="Add to Wishlist"><i class="fa fa-star"></i></a>
+                                    <a href="@Url.Action("AddToCompare", "Compare", new { id = product.Id })" title="Add to Compare"><i class="far fa-copy"></i></a>
+                                    <a href="@Url.Action("QuickView", "Product", new { id = product.Id })" title="Quick view"><i class="fa fa-expand"></i></a>
+                                </div>
+
+                                <div class="product-content">
+                                    <h5>
+                                        <a href="@Url.Action("ProductDetails", "Product", new { id = product.Id })" title="@product.Title">
+                                            @product.Title
+                                            <span>@product.Description</span>
+                                        </a>
+                                    </h5>
+
+                                    <h4><a href="">@product.Code</a></h4>
+
+                                    <h3><a href="">Available Quantity: @product.AvailableQuantaty</a></h3>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="welcome">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 welcome-margin">
+                    <div class="title text-center">
+                        <span>About your Company</span>
+                        Welcome To Our Website !
+                    </div>
+
+                </div>
+                <div class="col-md-5 wow fadeInRight  animated" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInRight;">
+                    <img alt="" src="~/template/images/header2.jpg" class="img-responsive welcome-img">
+
+                    <div class="flag-pic">
+                        <img alt="" src="~/template/images/pic1.png" class="img-responsive">
+                    </div>
+
+                </div>
+                <div class="col-md-7 wow fadeInUp  animated" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+
+                    <div class="welcome-text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit sed dol eiusmod tempor
+                        incididunt dolor magna aliqua enim ad minim veniam quis nostrud exercitation
+                        ullamco aboris nisi aliquip commod conseque aute irure dolor in reprehe derit in
+                        voluptate velit esvse sed ipsum dolor tempod cillum Lorem ipsum dolor sit amet
+                        <br> <br>
+                        consectetur adipisicing elit sed dol eiusmod tempor incididunt dolor magna
+                        aliqua enim ad minim veniam quis nostrud exercitation ullamco aboris nisi
+                        aliquip commod conseque aute irure dolor in reprehe derit in voluptate velit
+                        esvse sed ipsum dolor tempod cillum.
+                        <br> <br>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit sed dol eiusmod tempor
+                        incididunt dolor magna aliqua enim ad minim veniam quis nostrud exercitation
+                        ullamco aboris nisi aliquip commod conseque aute irure dolor in reprehe derit in
+                        voluptate velit esvse sed ipsum dolor tempod cillum Lorem ipsum dolor sit amet
+                        <br>
+                        consectetur adipisicing elit sed dol eiusmod tempor incididunt dolor magna
+                        aliqua enim ad minim veniam quis nostrud exercitation ullamco aboris nisi
+                        aliquip commod conseque aute irure dolor in reprehe derit in voluptate velit
+                        esvse sed ipsum dolor tempod cillum.
+
+                    </div>
+
+                    <div><a href="" class="btn-header btn-more">Read More </a></div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="boxes wow fadeInUp animated" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="">
+                        <div class="pic1" style="background-image:url('/template/images/pic1.png')">
+                            <div class="text1-bg">
+                                <div class="text1">
+                                    Category 1
+                                    <div class="more">Shop Now </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a href="">
+                                <div class="pic3" style="background-image:url('/template/images/pic2.png')">
+                                    <div class="text3-bg">
+                                        <div class="text3">
+                                            Category 2
+                                            <div class="more">shop now</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="">
+                                <div class="pic3" style="background-image:url('/template/images/Header1.jpg')">
+                                    <div class="text3-bg">
+                                        <div class="text3">
+                                            Category 3
+                                            <div class="more">shop now</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="">
+                        <div class="pic1" style="background-image:url('/template/images/header2.jpg')">
+                            <div class="text1-bg">
+                                <div class="text1">
+                                    Category 4
+                                    <div class="more">Shop Now </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-5">
+                    <a href="">
+                        <div class="pic1" style="background-image:url('/template/images/header3.jpg')">
+                            <div class="text1-bg">
+                                <div class="text1">
+                                    Category 5
+                                    <div class="more">Shop Now </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="">
+                        <div class="pic1" style="background-image:url('/template/images/pic3.png')">
+                            <div class="text1-bg">
+                                <div class="text1">
+                                    Category 6
+                                    <div class="more">Shop Now </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="services">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 welcome-margin">
+                    <div class="title-white text-center">
+                        <span>SERVICES WE OFFER</span>
+                        Services We Offer
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <ul>
+                        <li class="wow bounceIn" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: bounceIn;">
+                            <img alt="" src="~/template/images/serv-img-1.png" class="img-responsive">
+                            <div class="title-1">Expert Team</div>
+                            <div class="text">magna aliqua enim ad minim veniam quis nostrud exercitation ullamco aboris nisi aliquip commod </div>
+                        </li>
+
+                        <li class="wow bounceIn" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: bounceIn;">
+                            <img alt="" src="~/template/images/serv-img-2.png" class="img-responsive">
+                            <div class="title-1">Smart Services</div>
+                            <div class="text">magna aliqua enim ad minim veniam quis nostrud exercitation ullamco aboris nisi aliquip commod </div>
+                        </li>
+
+                        <li class="wow bounceIn" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: bounceIn;">
+                            <img alt="" src="~/template/images/serv-img-3.png" class="img-responsive">
+                            <div class="title-1">Smart Work</div>
+                            <div class="text">magna aliqua enim ad minim veniam quis nostrud exercitation ullamco aboris nisi aliquip commod </div>
+                        </li>
+
+                        <li class="wow bounceIn" data-wow-delay=".8s" style="visibility: visible; animation-delay: 0.8s; animation-name: bounceIn;">
+                            <img alt="" src="~/template/images/serv-img-4.png" class="img-responsive">
+                            <div class="title-1">Great Support</div>
+                            <div class="text">magna aliqua enim ad minim veniam quis nostrud exercitation ullamco aboris nisi aliquip commod </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>

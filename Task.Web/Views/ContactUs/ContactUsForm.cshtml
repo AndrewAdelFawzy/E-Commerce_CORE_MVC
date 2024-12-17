@@ -1,0 +1,174 @@
+﻿@model ContactUsViewModel
+
+<div class="caption-inner">
+    <div class="container">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Contact Us</h3>
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Contact Us</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-inner wow fadeInUp   animated" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 padding-right">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13342.061003643157!2d-111.869952!3d33.2791808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b008179f4d64f%3A0x5abc75f6dc2a9082!2sThe%20UPS%20Store!5e0!3m2!1sen!2sus!4v1640643442651!5m2!1sen!2sus" width="100%" height="479" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="col-md-6 padding-left">
+                        <div class="bg-color">
+                            <div class="calls">
+                                <div class="h4 text-uppercase">Phone</div>
+                                <div class="text-subline"></div>
+                                <div class="calls-data">
+                                    <div>
+                                        <i class="fas fa-phone" aria-hidden="true"></i>
+                                        <a href="callto:#" class="link-default">1-800-1234-567</a>
+                                    </div>
+                                </div>
+                                <div class="calls-data">
+                                    <div>
+                                        <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+
+                                        <a href="callto:#" class="link-default">1-800-1234-567</a>
+                                    </div>
+                                </div>
+                                <div class="calls-data">
+                                    <div>
+                                        <i class="fab fa-whatsapp"></i>
+                                        <a href="callto:#" class="link-default">1-800-1234-567</a>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="calls">
+                                <div class="h4 text-uppercase">address</div>
+                                <div class="text-subline"></div>
+                                <div class="calls-data">
+                                    <div>
+                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                        4578 Marmora St, San Francisco D04 89GR
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="calls">
+                                <div class="h4 text-uppercase">OPENING HOURS</div>
+                                <div class="text-subline"></div>
+                                <div class="calls-data">
+                                    <div>
+                                        <i class="fas fa-clock" aria-hidden="true"></i>
+
+                                        9:00am - 7:00pm
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <form asp-action="Create" method="post" class="needs-validation">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="bg-red">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="FullName" class="form-label">Full Name</label>
+                                            <input asp-for="FullName" class="form-control" required />
+                                            <span asp-validation-for="FullName" class="text-black-50"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="Email" class="form-label">Email</label>
+                                            <input asp-for="Email" class="form-control" required/>
+                                            <span asp-validation-for="Email" class="text-black-50"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                                            <input asp-for="PhoneNumber" class="form-control" required />
+                                            <span asp-validation-for="PhoneNumber" class="text-black-50"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label asp-for="Message" class="form-label">Message</label>
+                                            <input asp-for="Message" class="form-control" required/>
+                                            <span asp-validation-for="Message" class="text-black-50"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <button type="submit" class="btn-header btn-default">Submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- jQuery -->
+<!-- Bootstrap Core JavaScript -->
+<script src="/template/js/bootstrap.min.js"></script>
+
+<script>
+    /* first carousel slidesshow */
+    $('#carousel-1').carousel({
+
+      // The amount of time to delay between automatically cycling an item. If false, carousel will not automatically cycle.
+      interval: 5000,
+
+      // Pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave.
+      pause: "hover",
+
+      // Whether the carousel should cycle continuously or have hard stops.
+      wrap: true,
+
+      // Whether the carousel should react to keyboard events.
+      keyboard: true
+    });
+</script>
+
+
+<!-- Plugin JavaScript -->
+<script type="text/javascript" src="/template/js/jquery.fittext.js"></script>
+<script type="text/javascript" src="/template/js/wow.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script type="text/javascript" src="/template/js/creative.js"></script>
+
+<script>window.jQuery || document.write('<script src="/template/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script type="text/javascript" src="~/template/js/main.js"></script>
+
+

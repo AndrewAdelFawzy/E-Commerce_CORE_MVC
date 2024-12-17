@@ -1,0 +1,98 @@
+﻿@model IEnumerable<ProductViewModel>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="bg-white">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-md-12 text-end">
+                <a asp-controller="Products" asp-action="AddProduct" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add Product
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title text-center">
+                    <span>WE ARE Tecjo</span>
+                    We Are Tec jO. We Build Trust!
+                </div>
+
+                <div class="products-inner">
+                    @if (!Model.Any())
+                    {
+                        <div class="alert alert-dismissible bg-light-warning border border-warning border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10">
+                            <!-- Icon -->
+                            <span class="svg-icon svg-icon-2hx svg-icon-warning me-4 mb-5 mb-sm-0">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor" />
+                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="currentColor" />
+                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!-- Content -->
+                            <div class="d-flex flex-column pe-0 pe-sm-10 align-self-center">
+                                <h5 class="mb-1">No Products Found!</h5>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <ul>
+                            @foreach (var product in Model)
+                            {
+                                <li class="single-product wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+                                    <div class="figure">
+                                        <div class="product-brand">@product.BrandName</div>
+
+                                        <div class="product-price">
+                                            <span class="new-price">JD @product.CurrentPrice</span>
+                                            @if (product.CurrentPrice != product.OrignalPrice)
+                                            {
+                                                <span class="old-price">JD @product.OrignalPrice</span>
+                                            }
+                                        </div>
+
+                                        <img class="Sirv image-main sirv-image-loaded"
+                                             src="~/Images/Products/@product.ImageUrl"
+                                             data-src="~/Images/Products/@product.ImageUrl"
+                                             referrerpolicy="no-referrer-when-downgrade"
+                                             id="responsive-image-@product.Id" style="">
+
+                                        <img class="Sirv image-hover sirv-image-loaded"
+                                             data-src="~/Images/Products/@product.ImageUrl"
+                                             referrerpolicy="no-referrer-when-downgrade"
+                                             id="responsive-image-hover-@product.Id"
+                                             src="~/Images/Products/@product.ImageUrl">
+                                    </div>
+
+                                    <div class="product-action">
+                                        <a href="@Url.Action("AddToCart", "Cart", new { id = product.Id })" title="Add to cart" class=""><i class="fas fa-shopping-cart"></i></a>
+                                        <a href="@Url.Action("AddToWishlist", "Wishlist", new { id = product.Id })" title="Add to Wishlist"><i class="fa fa-star"></i></a>
+                                        <a href="@Url.Action("AddToCompare", "Compare", new { id = product.Id })" title="Add to Compare"><i class="far fa-copy"></i></a>
+                                        <a href="@Url.Action("QuickView", "Product", new { id = product.Id })" title="Quick view"><i class="fa fa-expand"></i></a>
+                                    </div>
+
+                                    <div class="product-content">
+                                        <h5>
+                                            <a href="@Url.Action("ProductDetails", "Product", new { id = product.Id })" title="@product.Title">
+                                                @product.Title
+                                                <span>@product.Description</span>
+                                            </a>
+                                        </h5>
+
+                                        <h4><a href="">@product.Code</a></h4>
+
+                                        <h3><a href="">Available Quantity: @product.AvailableQuantaty</a></h3>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

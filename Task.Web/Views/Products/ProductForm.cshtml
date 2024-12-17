@@ -1,0 +1,91 @@
+﻿@model ProductFormViewModel
+
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<div class="container mt-5 p-4 rounded bg-light shadow">
+    <h2 class="text-center mb-4">Add Product</h2>
+
+    <form asp-action="AddProduct" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+        <div class="row">
+            <!-- Title -->
+            <div class="col-md-6 mb-4">
+                <label asp-for="Title" class="form-label fw-semibold">Product Title</label>
+                <input asp-for="Title" class="form-control border border-secondary" placeholder="Enter product title" />
+                <span asp-validation-for="Title" class="text-danger small"></span>
+            </div>
+
+            <!-- Description -->
+            <div class="col-md-6 mb-4">
+                <label asp-for="Description" class="form-label fw-semibold">Product Description</label>
+                <textarea asp-for="Description" class="form-control border border-secondary" rows="3" placeholder="Write a short description"></textarea>
+                <span asp-validation-for="Description" class="text-danger small"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Current Price -->
+            <div class="col-md-6 mb-4">
+                <label asp-for="CurrentPrice" class="form-label fw-semibold">Current Price (JD)</label>
+                <input asp-for="CurrentPrice" type="number" step="0.01" class="form-control border border-secondary" placeholder="Enter current price" />
+                <span asp-validation-for="CurrentPrice" class="text-danger small"></span>
+            </div>
+
+            <!-- Original Price -->
+            <div class="col-md-6 mb-4">
+                <label asp-for="OrignalPrice" class="form-label fw-semibold">Original Price (JD)</label>
+                <input asp-for="OrignalPrice" type="number" step="0.01" class="form-control border border-secondary" placeholder="Enter original price" />
+                <span asp-validation-for="OrignalPrice" class="text-danger small"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Product Code -->
+            <div class="col-md-6 mb-4">
+                <label asp-for="Code" class="form-label fw-semibold">Product Code</label>
+                <input asp-for="Code" class="form-control border border-secondary" placeholder="Enter product code" />
+                <span asp-validation-for="Code" class="text-danger small"></span>
+            </div>
+
+            <!-- Available Quantity -->
+            <div class="col-md-6 mb-4">
+                <label asp-for="AvailableQuantaty" class="form-label fw-semibold">Available Quantity</label>
+                <input asp-for="AvailableQuantaty" type="number" class="form-control border border-secondary" placeholder="Enter available quantity" />
+                <span asp-validation-for="AvailableQuantaty" class="text-danger small"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Brand Dropdown -->
+            <div class="col-md-6 mb-4">
+                <label asp-for="BrandId" class="form-label fw-semibold">Select Brand</label>
+                <select asp-for="BrandId" class="form-control border border-secondary" asp-items="Model.Brands">
+                    <option value="">Select a Brand</option>
+                </select>
+                <span asp-validation-for="BrandId" class="text-danger small"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Image Upload -->
+            <div class="col-md-12 mb-4">
+                <label asp-for="Image" class="form-label fw-semibold">Product Image</label>
+                <div class="input-group">
+                    <input asp-for="Image" type="file" accept=".png, .jpg, .jpeg" class="form-control border border-secondary" />
+                </div>
+                <span asp-validation-for="Image" class="text-danger small"></span>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success btn-lg w-50 shadow-sm">Add Product</button>
+        </div>
+    </form>
+</div>
+
+<!-- Validation Scripts -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,64 @@
+﻿@model BrandFormViewModel
+
+@{
+    ViewData["Title"] = "Add Brand";
+}
+
+<div class="container mt-5 p-4 rounded bg-light shadow">
+    <h2 class="text-center mb-4">Add Brand</h2>
+
+    <form asp-action="AddBrand" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+        <div class="row">
+           
+            <div class="col-md-6 mb-4">
+                <label asp-for="Name" class="form-label fw-semibold">Brand Name</label>
+                <input asp-for="Name" class="form-control border border-secondary" placeholder="Enter Brand Name" />
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+
+            <!-- Field Enum Dropdown -->
+            <div class="col-md-6 mb-4">
+                <label asp-for="Field" class="form-label fw-semibold">Field</label>
+                <select asp-for="Field" class="form-control border border-secondary" asp-items="@(new SelectList(Model.Fields, "Value", "Text", Model.Field))">
+                </select>
+                <span asp-validation-for="Field" class="text-danger small"></span>
+            </div>
+
+            <!-- Country Enum Dropdown -->
+            <div class="col-md-6 mb-4">
+                <label asp-for="Country" class="form-label fw-semibold">Country</label>
+                <select asp-for="Country" class="form-control border border-secondary" asp-items="@(new SelectList(Model.Countries, "Value", "Text", Model.Field))">
+                    
+                </select>
+                <span asp-validation-for="Field" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-12 mb-4">
+                <label asp-for="BackgroundImage" class="form-label fw-semibold">Background Image</label>
+                <div class="input-group">
+                    <input asp-for="BackgroundImage" type="file" accept=".png, .jpg, .jpeg" class="form-control border border-secondary" />
+                </div>
+                <span asp-validation-for="BackgroundImage" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-12 mb-4">
+                <label asp-for="ProfileImage" class="form-label fw-semibold">Profile Image</label>
+                <div class="input-group">
+                    <input asp-for="ProfileImage" type="file" accept=".png, .jpg, .jpeg" class="form-control border border-secondary" />
+                </div>
+                <span asp-validation-for="ProfileImage" class="text-danger small"></span>
+            </div>
+
+        </div>
+
+        
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success btn-lg w-50 shadow-sm">Add Brand</button>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
